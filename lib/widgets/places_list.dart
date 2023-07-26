@@ -2,6 +2,7 @@
 // widget for the places list
 
 import 'package:fav_places_v1/models/place_model.dart';
+import 'package:fav_places_v1/screen/place_detail.dart';
 import 'package:flutter/material.dart';
 
 class PlacesList extends StatelessWidget {
@@ -25,14 +26,22 @@ class PlacesList extends StatelessWidget {
       );
     }
     return ListView.builder(
-        itemCount: places.length,
-        itemBuilder: (ctx, index) => ListTile(
-              title: Text(
-                places[index].title,
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),
+      itemCount: places.length,
+      itemBuilder: (ctx, index) => ListTile(
+        title: Text(
+          places[index].title,
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                color: Theme.of(context).colorScheme.onBackground,
               ),
-            ));
+        ),
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (ctx) => PlaceDetailScreen(place: places[index]),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
