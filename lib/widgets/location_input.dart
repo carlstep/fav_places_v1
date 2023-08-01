@@ -1,13 +1,19 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:location/location.dart';
 
 import 'package:fav_places_v1/models/place_model.dart';
 
-import 'package:flutter/material.dart';
-import 'package:location/location.dart';
-import 'package:http/http.dart' as http;
-
 class LocationInput extends StatefulWidget {
-  const LocationInput({super.key});
+  const LocationInput({
+    Key? key,
+    required this.onSelectLocation,
+  }) : super(key: key);
+
+  final void Function(PlaceLocation location) onSelectLocation;
 
   @override
   State<LocationInput> createState() => _LocationInputState();
@@ -77,6 +83,8 @@ class _LocationInputState extends State<LocationInput> {
       );
       _isGettingLocation = false;
     });
+
+    widget.onSelectLocation(_pickedLocation!);
   }
 
   @override
