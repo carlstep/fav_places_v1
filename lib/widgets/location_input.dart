@@ -36,7 +36,7 @@ class _LocationInputState extends State<LocationInput> {
 
   Future<void> _savePlace(double latitude, double longitude) async {
     final url = Uri.parse(
-        'https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&key=AIzaSyB7PoV1BGkB-BZP8T-u_5-nVUGuV-9NPkE');
+        'https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&key=ADD GOOGLE API KEY');
     final response = await http.get(url);
     final resData = json.decode(response.body);
     final address = resData['results'][0]['formatted_address'];
